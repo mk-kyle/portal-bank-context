@@ -100,7 +100,7 @@ function AddCard() {
     }
 
     const addNewCardHandler = () => {
-        if (imgUrl && cvv2.length > 2 && cardName.length > 2 && cardNumber.length == 16 && year.length == 2 && month.length == 2 && cardAmount.length > 3) {
+        if (imgUrl && cvv2.length > 2 && cardName.length > 2 && cardNumber.length == 16 && cardAmount.length > 3) {
             const addNewCard = {
                 id: Math.random() * 100,
                 bankName: bankName,
