@@ -44,25 +44,10 @@ function AddCard() {
     }
 
     const yearHandler = (event) => {
-        if (event.target.value < 10) {
-            event.target.value = '0' + event.target.value
-        }
-        if (event.target.value == '00') {
-            event.target.value = ''
-        }
         setYear(event.target.value)
     }
 
     const monthHandler = (event) => {
-        if (event.target.value > 12) {
-            event.target.value = ''
-        }
-        if (event.target.value > 1 && event.target.value < 10) {
-            event.target.value = '0' + event.target.value
-        }
-        if (event.target.value == '0') {
-            event.target.value = ''
-        }
         setMonth(event.target.value)
     }
 
@@ -93,7 +78,26 @@ function AddCard() {
         }
     }
 
+    const yearBlurHandler = (event) => {
+        if (event.target.value < 10 && event.target.value > 0 && event.target.value.length == 1) {
+            event.target.value = '0' + event.target.value
+        } else if (event.target.value == '00') {
+            event.target.value = ''
+        } else if (event.target.value > 12){
+            event.target.value = '12'
+        }
+    }
 
+
+    const monthBlurHandler = (event) => {
+        if (event.target.value < 10 && event.target.value > 0 && event.target.value.length == 1) {
+            event.target.value = '0' + event.target.value
+        } else if (event.target.value == '00') {
+            event.target.value = ''
+        } else if (event.target.value > 12){
+            event.target.value = '12'
+        }
+    }
 
     const addNewCardHandler = () => {
         if (imgUrl && cvv2.length > 2 && cardName.length > 2 && cardNumber.length == 16 && year.length == 2 && month.length == 2 && cardAmount.length > 3) {
@@ -129,8 +133,8 @@ function AddCard() {
             </div>
             <input type="text" onChange={cvvHandler} onKeyDown={numberCardHandler} maxLength={4} placeholder="CVV 2 ..." className="block w-full rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white mb-4 focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />
             <div className="flex justify-center items-center gap-4">
-                <input type="text" onChange={yearHandler} onKeyDown={dateCardHandler} maxLength={2} placeholder="YY ..." className="block w-1/2 rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white mb-4 focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />
-                <input type="text" onChange={monthHandler} onKeyDown={dateCardHandler} maxLength={2} placeholder="MM ..." className="block w-1/2 rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white mb-4 focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />
+                <input onBlur={yearBlurHandler} type="text" onChange={yearHandler} onKeyDown={dateCardHandler} maxLength={2} placeholder="YY ..." className="block w-1/2 rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white mb-4 focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />
+                <input onBlur={monthBlurHandler} type="text" onChange={monthHandler} onKeyDown={dateCardHandler} maxLength={2} placeholder="MM ..." className="block w-1/2 rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white mb-4 focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />
             </div>
             <input type="text" onChange={AmountHandler} onKeyDown={numberCardHandler} maxLength={10} placeholder="Amount ..." className=" w-full rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />
             <button onClick={addNewCardHandler} className="w-full h-12 bg-lime-700 rounded-full font-bold text-white mt-4 hover:bg-lime-800">Add New Card</button>

@@ -30,7 +30,7 @@ function History() {
     )
   } else {
     return (
-      <div>No History</div>
+      <div className="text-6xl leading-[340px] text-center text-white">No History</div>
     )
   }
 
