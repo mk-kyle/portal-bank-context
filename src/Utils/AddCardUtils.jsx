@@ -4,30 +4,35 @@ import { cardContext } from "../App"
 
 function AddCardUtils() {
 
-    const { newCard } = useContext(cardContext)
+    const { newCard, setSendCard } = useContext(cardContext)
 
     const showCards = newCard.map((item, indx) => {
-        let cardNameSpace = item.cardNumber.match(/.{1,4}/g)
-        let cardAmountSpace = item.cardAmount.match(/.{1,3}/g)
+        // let cardNameSpace = item.cardNumber.match(/.{1,4}/g)
+        // let cardAmountSpace = item.cardAmount.match(/.{1,3}/g)
+
+        const addCardToPayHandler = () => {
+            setSendCard(item)
+        }
         return (
-            <span onClick={addCardToPayHandler} className="rounded-xl p-4 flex flex-col gap-2 w-80 my-3" style={{ backgroundColor: item.backGround }}>
+            <div key={`container${indx}`} onClick={addCardToPayHandler} className="rounded-xl p-4 flex flex-col gap-2 my-4 w-full" style={{ backgroundColor: item.backGround }}>
                 <div className="flex justify-between items-center">
-                    <div>{item.imgUrl}</div>
-                    <div>{item.bankName}</div>
+                    <div key={`image${indx}`}>{item.imgUrl}</div>
+                    <div key={`bankName${indx}`}>{item.bankName}</div>
                 </div>
-                <div>Name: {item.cardName}</div>
-                <div>Number: {cardNameSpace.join(' ')}</div>
-                <div>Cvv2: {item.cvv2}</div>
-                <div className="flex justify-between items-center">
-                    <div>
-                        <span>Date: {item.year} </span>
-                        <span>/ {item.month}</span>
+                <div key={`cardName${indx}`}>Name: {item.cardName}</div>
+                <div key={`cardNumber${indx}`}>Number: {item.cardNumber}</div>
+                <div key={`cvv2${indx}`}>Cvv2: {item.cvv2}</div>
+                <div key={`date&Amount${indx}`} className="flex justify-between items-center">
+                    <div key={`dateContainer${indx}`}>
+                        <span key={`year${indx}`}>Date: {item.year} </span>
+                        <span key={`month${indx}`}>/ {item.month}</span>
                     </div>
-                    <span className="font-semibold">$ {cardAmountSpace.join(',')}</span>
+                    <span key={`amount${indx}`} className="font-semibold">$ {item.cardAmount}</span>
                 </div>
-            </span>
+            </div>
         )
     })
+
 
     if (newCard.length !== 0) {
         return (

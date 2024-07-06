@@ -122,7 +122,7 @@ function AddCard() {
     }
 
     return (
-        <div className="mt-4">
+        <div className="pt-4">
             <input onChange={cardNameHandler} onKeyDown={nameCardHandler} type="text" maxLength={20} placeholder="Card Name ..." className="block w-full rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white mb-4 focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />
             <div className="flex justify-center items-center mb-4 gap-4">
                 {imgUrl}<input type="text" onChange={cardNumberHandler} onKeyDown={numberCardHandler} maxLength={16} placeholder="Card Number ..." className=" w-full rounded-2xl h-10 bg-[#ffffff63] outline-none pl-2 text-white focus:border-b-2 border-blue-500 focus:placeholder:font-semibold" />

@@ -30,6 +30,8 @@ function App() {
 
   const [newCard, setNewCard] = useState([])
   const [sendCard, setSendCard] = useState()
+  const [historyDes, setHistoryDes] = useState()
+  const [addNewHistory, setAddNewHistory] = useState([])
 
   const bankCode = [
     { bankName: 'Maskan', code: 6280, url: Maskan, bg: { backgroundColor: '#FF9800' } },
@@ -53,17 +55,17 @@ function App() {
   return (
     <div className="h-screen w-screen bg-slate-300 flex justify-center items-center box-border">
       <Router >
-        <cardContext.Provider value={{ newCard, setNewCard, bankCode, sendCard, setSendCard }}>
+        <cardContext.Provider value={{ newCard, setNewCard, bankCode, sendCard, setSendCard, historyDes, setHistoryDes, addNewHistory, setAddNewHistory }}>
           <div className="h-[95%] w-96 bg-slate-800 rounded-xl">
             <div className="h-[8%] bg-yellow-400 rounded-t-xl px-5 flex justify-between items-center text-2xl">
               <NavLink to="/">&#128179;</NavLink>
               <NavLink to="/pay">&#128178;</NavLink>
               <NavLink to="/history">&#128177;</NavLink>
             </div>
-            <div className="h-2/5 bg-slate-700 rounded-b-2xl px-5 flex justify-center items-center overflow-y-auto">
+            <div className="h-2/5 w-full bg-slate-700 rounded-b-2xl px-5 flex justify-center items-center overflow-y-auto">
               <AddCardUtils />
             </div>
-            <div className="h-1/2 px-5 mx-auto">
+            <div className="h-1/2 px-5 mx-auto overflow-y-auto">
               <Routes >
                 <Route path="/" element={<AddCard />} />
                 <Route path="/pay" element={<PayMony />} />
